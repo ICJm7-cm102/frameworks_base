@@ -2773,20 +2773,6 @@ public final class Settings {
         };
 
         /**
-         * Custom navring icons
-         *
-         * @hide
-         */
-        public static final String[] ACTIVITY_ANIMATION_CONTROLS = new String[] {
-                "activity_open",
-                "activity_close",
-                "task_open",
-                "task_close",
-                "task_to_front",
-                "task_to_back",
-        };
-
-        /**
          * Setting to enable volume options.
          *
          * @hide

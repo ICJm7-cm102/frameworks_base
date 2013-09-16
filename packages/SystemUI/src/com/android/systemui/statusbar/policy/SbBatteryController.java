@@ -74,13 +74,12 @@ public class SbBatteryController extends LinearLayout {
     public static final int STYLE_ICON_TEXT = 2;
     public static final int STYLE_ICON_CENTERED_TEXT = 3;
     public static final int STYLE_ICON_CIRCLE = 4;
-    public static final int STYLE_ICON_SPEED_RB = 5;
-    public static final int STYLE_ICON_RACING_RB = 6;
-    public static final int STYLE_ICON_GAUGE_RB = 7;
-    public static final int STYLE_ICON_PLANET_RB = 8;
-    public static final int STYLE_ICON_SLIDER_RB = 9;
-    public static final int STYLE_ICON_BRICK_RB = 10;
-    public static final int STYLE_HIDE = 11;
+    public static final int STYLE_ICON_RACING_RB = 5;
+    public static final int STYLE_ICON_GAUGE_RB = 6;
+    public static final int STYLE_ICON_PLANET_RB = 7;
+    public static final int STYLE_ICON_SLIDER_RB = 8;
+    public static final int STYLE_ICON_BRICK_RB = 9;
+    public static final int STYLE_HIDE = 10;
 
     public SbBatteryController(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -150,14 +149,7 @@ public class SbBatteryController extends LinearLayout {
             icon = plugged ? R.drawable.stat_sys_battery_charge_circle
                     : R.drawable.stat_sys_battery_circle;
         } else {
-            icon = plugged ? R.drawable.stat_sys_battery_charge
-                    : R.drawable.stat_sys_battery;
-
       		  switch (mBatteryStyle) {
-			case STYLE_ICON_SPEED_RB:
-              		  	icon = plugged ? R.drawable.stat_sys_battery_charge_altcircle
-             		   	: R.drawable.stat_sys_battery_altcircle;
-                	break;
 			case STYLE_ICON_RACING_RB:
 				icon = plugged ? R.drawable.stat_sys_battery_charge_racing
                  		: R.drawable.stat_sys_battery_racing;
@@ -182,6 +174,7 @@ public class SbBatteryController extends LinearLayout {
                  	icon = plugged ? R.drawable.stat_sys_battery_charge
                  	: R.drawable.stat_sys_battery;
                  	break;
+                }
         }
 
         int N = mIconViews.size();

@@ -48,13 +48,14 @@
             android:id="@+id/recents_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="0dp"
             android:divider="@null"
             android:stackFromBottom="true"
             android:fadingEdge="vertical"
             android:scrollbars="none"
             android:fadingEdgeLength="@dimen/status_bar_recents_scroll_fading_edge_length"
-            android:layout_gravity="bottom|left"
+            android:layout_gravity="bottom|start"
             android:clipToPadding="false"
             android:clipChildren="false">
 
@@ -75,6 +76,12 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/recents_kill_all_button_text"/>
+
+    <include layout="@layout/status_bar_no_recent_apps"
+            android:id="@+id/recents_no_apps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
 
     <view class="com.android.systemui.recent.LinearColorBar"
             android:id="@+id/ram_usage_bar"
@@ -124,11 +131,5 @@
     </view>
 
     </FrameLayout>
-
-    <include layout="@layout/status_bar_no_recent_apps"
-        android:id="@+id/recents_no_apps"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible" />
 
 </com.android.systemui.recent.RecentsPanelView>

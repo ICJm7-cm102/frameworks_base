@@ -933,6 +933,7 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback, TabletTi
         mEffect.unscheduleSleep();
         mHandler.removeCallbacksAndMessages(null);
         // Kill callback
+        mBar.getTicker().setUpdateEvent(null);
         // Flag tasker
         mBar.setHaloTaskerActive(false, false);
         // Kill the effect layer

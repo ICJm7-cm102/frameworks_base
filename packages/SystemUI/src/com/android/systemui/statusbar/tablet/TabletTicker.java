@@ -78,18 +78,6 @@ public class TabletTicker
     private LayoutTransition mLayoutTransition;
     private boolean mWindowShouldClose;
 
-    private TabletTickerCallback mEvent;
-
-    public interface TabletTickerCallback
-    {
-        public void updateTicker(StatusBarNotification notification);
-        public void updateTicker(StatusBarNotification notification, String text);
-    }
-
-    public void setUpdateEvent(TabletTickerCallback event) {
-        mEvent = event;
-    }
-
 
     public TabletTicker(TabletStatusBar bar) {
         mBar = bar;

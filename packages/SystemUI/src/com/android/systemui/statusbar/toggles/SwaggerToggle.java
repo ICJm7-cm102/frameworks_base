@@ -1,11 +1,10 @@
+
 package com.android.systemui.statusbar.toggles;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -20,8 +19,6 @@ import java.util.Calendar;
 public class SwaggerToggle extends BaseToggle implements OnTouchListener {
 
     private Calendar mCalendar;
-
-    private Drawable mTileBackground;
 
     boolean youAreATaco = false;
     boolean sundayToggle = false;
@@ -51,13 +48,6 @@ public class SwaggerToggle extends BaseToggle implements OnTouchListener {
         root.setOnTouchListener(this);
         root.setOnClickListener(null);
         root.setOnLongClickListener(null);
-        if (mContext.getResources().getConfiguration().uiInvertedMode
-                              == Configuration.UI_INVERTED_MODE_YES) {
-            root.setBackgroundColor(R.color.inverted_tile);
-        } else {
-            root.setBackground(mTileBackground);
-        }
-
         return (QuickSettingsTileView) root;
     }
 
@@ -67,13 +57,6 @@ public class SwaggerToggle extends BaseToggle implements OnTouchListener {
         root.setOnTouchListener(this);
         root.setOnClickListener(null);
         root.setOnLongClickListener(null);
-        if (mContext.getResources().getConfiguration().uiInvertedMode
-                            == Configuration.UI_INVERTED_MODE_YES) {
-            root.setBackgroundColor(R.color.inverted_tile);
-        } else {
-            root.setBackground(mTileBackground);
-        }
-
         return root;
     }
 

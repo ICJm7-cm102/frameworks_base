@@ -1,10 +1,9 @@
+
 package com.android.systemui.statusbar.toggles;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
@@ -21,8 +20,6 @@ public class SignalToggle extends StatefulToggle implements NetworkSignalChanged
     private WifiState mWifiState = new WifiState();
     private RSSIState mRSSIState = new RSSIState();
 
-    private Drawable mTileBackground;
-
     private ImageView rssiImage;
     private ImageView rssiOverlayImage;
 
@@ -31,8 +28,6 @@ public class SignalToggle extends StatefulToggle implements NetworkSignalChanged
     @Override
     public void init(Context c, int style) {
         super.init(c, style);
-
-        mTileBackground = (Drawable) c.getResources() .getDrawable(R.drawable.qs_tile_background);
         setIcon(R.drawable.ic_qs_signal_no_signal);
         setLabel(R.string.quick_settings_rssi_emergency_only);
         connManager = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -110,12 +105,6 @@ public class SignalToggle extends StatefulToggle implements NetworkSignalChanged
                 View.inflate(mContext, R.layout.toggle_tile_signal, null);
         root.setOnClickListener(this);
         root.setOnLongClickListener(this);
-        if (mContext.getResources().getConfiguration().uiInvertedMode
-                              == Configuration.UI_INVERTED_MODE_YES) {
-            root.setBackgroundColor(R.color.inverted_tile);
-        } else {
-            root.setBackground(mTileBackground);
-        }
         mLabel = (TextView) root.findViewById(R.id.rssi_textview);
         rssiImage = (ImageView) root.findViewById(R.id.rssi_image);
         rssiOverlayImage = (ImageView) root.findViewById(R.id.rssi_overlay_image);
@@ -128,12 +117,6 @@ public class SignalToggle extends StatefulToggle implements NetworkSignalChanged
         View root = View.inflate(mContext, R.layout.toggle_traditional_signal, null);
         root.setOnClickListener(this);
         root.setOnLongClickListener(this);
-        if (mContext.getResources().getConfiguration().uiInvertedMode
-                            == Configuration.UI_INVERTED_MODE_YES) {
-            root.setBackgroundColor(R.color.inverted_tile);
-        } else {
-            root.setBackground(mTileBackground);
-        }
         rssiImage = (ImageView) root.findViewById(R.id.rssi_image);
         rssiOverlayImage = (ImageView) root.findViewById(R.id.rssi_overlay_image);
         mLabel = null;

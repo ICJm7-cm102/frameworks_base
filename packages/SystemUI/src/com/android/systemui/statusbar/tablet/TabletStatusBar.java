@@ -674,9 +674,7 @@ public class TabletStatusBar extends BaseStatusBar implements
             setupAutoHide();
         }
 
-        if (mRecreating) {
-            addActiveDisplayView();
-        }
+        addActiveDisplayView();
 
         return sb;
     }

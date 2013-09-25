@@ -115,24 +115,6 @@ public class SlimActions {
                 }
                 context.sendBroadcast(new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"));
                 return;
-            } else if (action.equals(ButtonsConstants.ACTION_KILL)) {
-                if (isKeyguardShowing) {
-                    return;
-                }
-                try {
-                    barService.toggleKillApp();
-                } catch (RemoteException e) {
-                }
-                return;
-            } else if (action.equals(ButtonsConstants.ACTION_WIDGETS)) {
-                if (isKeyguardShowing) {
-                    return;
-                }
-                try {
-                    barService.toggleWidgets();
-                } catch (RemoteException e) {
-                }
-                return;
             } else if (action.equals(ButtonsConstants.ACTION_LAST_APP)) {
                 if (isKeyguardShowing) {
                     return;
@@ -163,15 +145,6 @@ public class SlimActions {
                 }
                 try {
                     barService.toggleNotificationShade();
-                } catch (RemoteException e) {
-                }
-                return;
-            } else if (action.equals(ButtonsConstants.ACTION_QS)) {
-                if (isKeyguardShowing && isKeyguardSecure) {
-                    return;
-                }
-                try {
-                    barService.toggleQSShade();
                 } catch (RemoteException e) {
                 }
                 return;

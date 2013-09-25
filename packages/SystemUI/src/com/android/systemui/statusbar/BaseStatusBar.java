@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2010 The Android Open Source Project
  *
@@ -495,7 +496,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         mSettingsObserver.onChange(true);
 
         mSettingsObserver.observe();
-    }
+    
 
 
 
@@ -618,6 +619,10 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (DEBUG) Slog.d(TAG, "Configuration changed! Update pie triggers");
+        attachPie();
         final Locale newLocale = mContext.getResources().getConfiguration().locale;
         if (! newLocale.equals(mLocale)) {
             mLocale = newLocale;
@@ -737,13 +742,6 @@ public abstract class BaseStatusBar extends SystemUI implements
     }
 
     @Override
-    public void toggleWidgets() {
-        int msg = MSG_TOGGLE_WIDGETS;
-        mHandler.removeMessages(msg);
-        mHandler.sendEmptyMessage(msg);
-    }
-
-    @Override
     public void toggleScreenshot() {
         int msg = MSG_TOGGLE_SCREENSHOT;
         mHandler.removeMessages(msg);
@@ -753,13 +751,6 @@ public abstract class BaseStatusBar extends SystemUI implements
     @Override
     public void toggleLastApp() {
         int msg = MSG_TOGGLE_LAST_APP;
-        mHandler.removeMessages(msg);
-        mHandler.sendEmptyMessage(msg);
-    }
-
-    @Override
-    public void toggleKillApp() {
-        int msg = MSG_TOGGLE_KILL_APP;
         mHandler.removeMessages(msg);
         mHandler.sendEmptyMessage(msg);
     }
@@ -1731,14 +1722,6 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
     }
     // Pie Controls
-
-    @Override
-    protected void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-
-        if (DEBUG) Slog.d(TAG, "Configuration changed! Update pie triggers");
-        attachPie();
-    }
 
     private final class PieSettingsObserver extends ContentObserver {
         PieSettingsObserver(Handler handler) {

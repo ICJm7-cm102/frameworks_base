@@ -18,6 +18,7 @@ package com.android.internal.policy.impl.keyguard;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.KeyguardManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
@@ -43,7 +44,6 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.android.internal.R;
-import com.android.internal.util.slim.TorchConstants;
 import com.android.internal.widget.LockPatternUtils;
 
 /**
@@ -452,6 +452,7 @@ public class KeyguardViewManager {
             mKeyguardView.showAssistant();
         }
     }
+
     public void showCustomIntent(Intent intent) {
         if (mKeyguardView != null) {
             mKeyguardView.showCustomIntent(intent);

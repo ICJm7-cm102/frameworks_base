@@ -1442,7 +1442,6 @@ public class KeyguardViewMediator {
         mKeyguardViewManager.showCustomIntent(intent);
     }
 
-
     public void showAssistant() {
         Message msg = mHandler.obtainMessage(SHOW_ASSISTANT);
         mHandler.sendMessage(msg);

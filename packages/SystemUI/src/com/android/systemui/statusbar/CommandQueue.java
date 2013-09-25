@@ -96,11 +96,8 @@ public class CommandQueue extends IStatusBar.Stub {
         public void setHardKeyboardStatus(boolean available, boolean enabled);
         public void toggleNotificationShade();
         public void toggleRecentApps();
-        public void toggleWidgets();
         public void toggleLastApp();
-        public void toggleQSShade();
         public void toggleScreenshot();
-        public void toggleKillApp();
         public void preloadRecentApps();
         public void showSearchPanel();
         public void hideSearchPanel();
@@ -219,12 +216,6 @@ public class CommandQueue extends IStatusBar.Stub {
         }
     }
 
-    public void toggleWidgets() {
-        synchronized (mList) {
-            mHandler.removeMessages(MSG_TOGGLE_WIDGETS);
-            mHandler.obtainMessage(MSG_TOGGLE_WIDGETS, 0, 0, null).sendToTarget();
-        }
-    }
 
     public void toggleScreenshot() {
         synchronized (mList) {
@@ -237,21 +228,6 @@ public class CommandQueue extends IStatusBar.Stub {
         synchronized (mList) {
             mHandler.removeMessages(MSG_TOGGLE_LAST_APP);
             mHandler.obtainMessage(MSG_TOGGLE_LAST_APP, 0, 0, null).sendToTarget();
-        }
-    }
-
-    public void toggleQSShade() {
-        synchronized (mList) {
-            mHandler.removeMessages(MSG_TOGGLE_QS_SHADE);
-            mHandler.obtainMessage(MSG_TOGGLE_QS_SHADE, 0, 0, null).sendToTarget();
-        }
-    }
-
-
-    public void toggleKillApp() {
-        synchronized (mList) {
-            mHandler.removeMessages(MSG_TOGGLE_KILL_APP);
-            mHandler.obtainMessage(MSG_TOGGLE_KILL_APP, 0, 0, null).sendToTarget();
         }
     }
 
@@ -356,15 +332,6 @@ public class CommandQueue extends IStatusBar.Stub {
                     break;
                 case MSG_TOGGLE_RECENT_APPS:
                     mCallbacks.toggleRecentApps();
-                    break;
-                case MSG_TOGGLE_QS_SHADE:
-                    mCallbacks.toggleQSShade();
-                    break;
-                case MSG_TOGGLE_WIDGETS:
-                    mCallbacks.toggleWidgets();
-                    break;
-                case MSG_TOGGLE_KILL_APP:
-                    mCallbacks.toggleKillApp();
                     break;
                 case MSG_TOGGLE_LAST_APP:
                     mCallbacks.toggleLastApp();

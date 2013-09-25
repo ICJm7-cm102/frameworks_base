@@ -49,11 +49,8 @@ interface IStatusBarService
     void setSystemUiVisibility(int vis, int mask);
     void setHardKeyboardEnabled(boolean enabled);
     void toggleNotificationShade();
-    void toggleWidgets();
     void toggleLastApp();
-    void toggleQSShade();
     void toggleScreenshot();
-    void toggleKillApp();
     void toggleRecentApps();
     void preloadRecentApps();
     void cancelPreloadRecentApps();

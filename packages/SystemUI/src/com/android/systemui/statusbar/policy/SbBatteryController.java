@@ -80,6 +80,7 @@ public class SbBatteryController extends LinearLayout {
     public static final int STYLE_ICON_SLIDER_RB = 8;
     public static final int STYLE_ICON_BRICK_RB = 9;
     public static final int STYLE_HIDE = 10;
+    public static final int STYLE_GONE = 11;
 
     public SbBatteryController(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -246,6 +247,9 @@ public class SbBatteryController extends LinearLayout {
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.STATUSBAR_BATTERY_ICON), false,
                     this);
+            resolver.registerContentObserver(Settings.Systei
+                    .getUriFor(Settings.System.PIE_DISABLE_STATUSBAR_INFO), false,
+                    this);
         }
 
         @Override
@@ -259,6 +263,11 @@ public class SbBatteryController extends LinearLayout {
         ContentResolver cr = mContext.getContentResolver();
         mBatteryStyle = Settings.System.getInt(cr,
                 Settings.System.STATUSBAR_BATTERY_ICON, 0);
+
+        if (Settings.System.getInt(resolver,
+                Settings.System.PIE_DISABLE_STATUSBAR_INFO, 0) == 1) {
+            mBatteryStyle = STYLE_GONE;
+        }
 
         switch (mBatteryStyle) {
             case STYLE_ICON_ONLY:

@@ -1216,6 +1216,14 @@ public class TabletStatusBar extends BaseStatusBar implements
                 mHandler.sendEmptyMessage(MSG_CLOSE_RECENTS_PANEL);
            }
         }
+        if ((diff & (StatusBarManager.DISABLE_HOME
+                | StatusBarManager.DISABLE_RECENT
+                | StatusBarManager.DISABLE_BACK
+                | StatusBarManager.DISABLE_SEARCH)) != 0) {
+
+            // all navigation bar listeners will take care of these
+            propagateDisabledFlags(state);
+        }
         mTransparencyManager.update();
     }
 
@@ -1308,6 +1316,9 @@ public class TabletStatusBar extends BaseStatusBar implements
 
         mNavBarView.setNavigationIconHints(hints);
         mNavigationIconHints = hints;
+
+        propagateMenuVisibility(showMenu);
+
     }
 
     private void notifyUiVisibilityChanged() {

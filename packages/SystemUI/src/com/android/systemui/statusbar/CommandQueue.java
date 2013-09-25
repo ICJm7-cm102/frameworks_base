@@ -96,6 +96,11 @@ public class CommandQueue extends IStatusBar.Stub {
         public void setHardKeyboardStatus(boolean available, boolean enabled);
         public void toggleNotificationShade();
         public void toggleRecentApps();
+        public void toggleWidgets();
+        public void toggleLastApp();
+        public void toggleQSShade();
+        public void toggleScreenshot();
+        public void toggleKillApp();
         public void preloadRecentApps();
         public void showSearchPanel();
         public void hideSearchPanel();
@@ -214,6 +219,42 @@ public class CommandQueue extends IStatusBar.Stub {
         }
     }
 
+    public void toggleWidgets() {
+        synchronized (mList) {
+            mHandler.removeMessages(MSG_TOGGLE_WIDGETS);
+            mHandler.obtainMessage(MSG_TOGGLE_WIDGETS, 0, 0, null).sendToTarget();
+        }
+    }
+
+    public void toggleScreenshot() {
+        synchronized (mList) {
+            mHandler.removeMessages(MSG_TOGGLE_SCREENSHOT);
+            mHandler.obtainMessage(MSG_TOGGLE_SCREENSHOT, 0, 0, null).sendToTarget();
+        }
+    }
+
+    public void toggleLastApp() {
+        synchronized (mList) {
+            mHandler.removeMessages(MSG_TOGGLE_LAST_APP);
+            mHandler.obtainMessage(MSG_TOGGLE_LAST_APP, 0, 0, null).sendToTarget();
+        }
+    }
+
+    public void toggleQSShade() {
+        synchronized (mList) {
+            mHandler.removeMessages(MSG_TOGGLE_QS_SHADE);
+            mHandler.obtainMessage(MSG_TOGGLE_QS_SHADE, 0, 0, null).sendToTarget();
+        }
+    }
+
+
+    public void toggleKillApp() {
+        synchronized (mList) {
+            mHandler.removeMessages(MSG_TOGGLE_KILL_APP);
+            mHandler.obtainMessage(MSG_TOGGLE_KILL_APP, 0, 0, null).sendToTarget();
+        }
+    }
+
     public void toggleRecentApps() {
         synchronized (mList) {
             mHandler.removeMessages(MSG_TOGGLE_RECENT_APPS);
@@ -316,8 +357,23 @@ public class CommandQueue extends IStatusBar.Stub {
                 case MSG_TOGGLE_RECENT_APPS:
                     mCallbacks.toggleRecentApps();
                     break;
+                case MSG_TOGGLE_QS_SHADE:
+                    mCallbacks.toggleQSShade();
+                    break;
+                case MSG_TOGGLE_WIDGETS:
+                    mCallbacks.toggleWidgets();
+                    break;
+                case MSG_TOGGLE_KILL_APP:
+                    mCallbacks.toggleKillApp();
+                    break;
+                case MSG_TOGGLE_LAST_APP:
+                    mCallbacks.toggleLastApp();
+                    break;
                 case MSG_PRELOAD_RECENT_APPS:
                     mCallbacks.preloadRecentApps();
+                    break;
+                case MSG_TOGGLE_SCREENSHOT:
+                    mCallbacks.toggleScreenshot();
                     break;
                 case MSG_CANCEL_PRELOAD_RECENT_APPS:
                     mCallbacks.cancelPreloadRecentApps();

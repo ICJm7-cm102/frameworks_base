@@ -487,6 +487,12 @@ public class IWindowManagerImpl implements IWindowManager {
 
     }
 
+    /* @hide */
+    @Override
+    public void showCustomIntent(Intent intent) {
+
+    }
+
     @Override
     public IBinder getFocusedWindowToken() {
         // TODO Auto-generated method stub

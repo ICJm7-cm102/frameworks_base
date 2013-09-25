@@ -18,6 +18,7 @@ package com.android.internal.policy.impl.keyguard;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.KeyguardManager;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.SearchManager;
@@ -28,6 +29,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -591,6 +593,10 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         public void dismiss(boolean authenticated) {
             showNextSecurityScreenOrFinish(authenticated);
+        }
+
+        public void showCustomIntent(Intent intent) {
+            startActivity(intent);
         }
 
         public boolean isVerifyUnlockOnly() {
@@ -1727,6 +1733,19 @@ public class KeyguardHostView extends KeyguardViewBase {
         final Intent intent = ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
           .getAssistIntent(mContext, true, UserHandle.USER_CURRENT);
 
+        if (intent == null) return;
+
+        final ActivityOptions opts = ActivityOptions.makeCustomAnimation(mContext,
+                R.anim.keyguard_action_assist_enter, R.anim.keyguard_action_assist_exit,
+                getHandler(), null);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        mActivityLauncher.launchActivityWithAnimation(
+                intent, false, opts.toBundle(), null, null);
+    }
+
+    private void startActivity(Intent intent) {
         if (intent == null) return;
 
         final ActivityOptions opts = ActivityOptions.makeCustomAnimation(mContext,

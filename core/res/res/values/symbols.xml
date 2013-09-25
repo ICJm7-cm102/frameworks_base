@@ -2020,4 +2020,7 @@
   <!-- Package Manager -->
   <java-symbol type="array" name="config_disabledComponents" />
 
+  <!-- Pie -->
+  <java-symbol type="string" name="expanded_mode_default_with_navbar_set" />
+
 </resources>

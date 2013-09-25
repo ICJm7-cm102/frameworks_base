@@ -37,7 +37,12 @@ oneway interface IStatusBar
     void setHardKeyboardStatus(boolean available, boolean enabled);
     void toggleNotificationShade();
     void toggleRecentApps();
+    void toggleWidgets();
+    void toggleLastApp();
+    void toggleScreenshot();
+    void toggleQSShade();
     void preloadRecentApps();
     void cancelPreloadRecentApps();
+    void toggleKillApp();
 }
 
